@@ -43,6 +43,7 @@ const appData = {
             } while (!appData.isNumber(money));
 
                 appData.screens.push({ id: i, name: name, money: money });
+              
         }
 
         for (let i = 0; i < 2; i++) {
@@ -51,15 +52,7 @@ const appData = {
 
             while (!isNaN(name) || name.trim() === "" || name === null) {
                 name = prompt("Какой дополнительный тип услуг нужен?");
-            }
-
-            for (let i = 0; i < 2; i++) {
-                let sum = appData.screenPrice;
-    
-                appData.screens.reduce(function(sum, price) {
-                    sum + +price;
-                    }, 0);
-            }
+            }            
      
             do {
                 money = prompt("Сколько это будет стоить?");
@@ -74,6 +67,14 @@ const appData = {
         for (let screen of appData.screens) {
             appData.screenPrice += +screen.money;
         }
+
+        //  for (let i = 0; i < 2; i++) {          
+            
+        //     appData.screens.reduce(function(sum, item) {
+        //         appData.screenPrice += +item.money;   
+        //         return sum + item.money;
+        //         }, 0);            
+        //  }
 
         for (let key in appData.services) {
             appData.allServicePrices += appData.services[key];
@@ -101,15 +102,12 @@ const appData = {
             }
     },
     logger: function() {
-        
-        // for (let key in appData) {
-        //     console.log('key: ', key);
-        // }
-
+   
         console.log(appData.fullPrice);
         console.log(appData.servicePresentPrice);
         console.log(appData.screens);
-    }
+    //     console.log(appData.screenPrice);
+     }
     
 }
 
