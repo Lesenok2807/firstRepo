@@ -125,11 +125,11 @@ const appData = {
     
         for (let key in this.servicesPercent) {
         this.servicePricesPercent += (this.servicesPercent[key] / 100) * this.screenPrice;
-        }
- 
-        this.servicePresentPrice = Math.ceil(this.fullPrice - ((this.rollback / 100) * this.fullPrice));
+        }     
 
         this.fullPrice = +this.screenPrice + this.servicePricesPercent + this.servicePricesNumber;
+
+        this.servicePresentPrice = Math.ceil(this.fullPrice - ((this.rollback / 100) * this.fullPrice));
     }
        
    },
@@ -137,7 +137,7 @@ const appData = {
         inputRange.disabled = false;
         inputRangeValue.textContent = inputRange.value + '%';
         appData.rollback = +inputRange.value;
-        totalCountRollback.value = this.servicePresentPrice;
+        totalCountRollback.value = appData.servicePresentPrice;
     },
     block: function() {
         let count = 0;
@@ -222,8 +222,8 @@ const appData = {
         inputRange.disabled = true;
         inputRange.value = 0;
         inputRangeValue.textContent = 0 + '%';
-        this.rollback = 0;
-        this.fullPrice = 0;
+        appData.rollback = 0;
+        appData.fullPrice = 0;
         totalCountRollback.value = 0;
     },
     deleteBlockBtn: function() {
